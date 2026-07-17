@@ -1,6 +1,11 @@
 //variables and data types: string, number, float,boolean, undefined, null, bigint, symbol, array, object
 //type conversion typeof() and Number(), String(), Boolean(), BigInt()
 //High order functions: map(), filter(), reduce(), forEach(), sort(), every(), some()
+//new Map() and can function similar to new Set()
+//new Map() allows you to store key-value pairs where keys can be of any data type: get(key), set(key, value), has(key), delete(key), clear(), size property, keys(), values(), entries(), forEach()
+const myTreesMap = new Map();
+myTreesMap.set({ type: 'deciduous' }, 'Maple tree');
+//WeakMap() has set(), get(), has(), delete() methods, and only allows objects as keys. 
 //reassigning variables
 //reducer function 
 //indexOf() method
@@ -33,14 +38,27 @@
 //regex: /pattern/flags, .test(), .exec(), .match(), matchAll(), .replace(), .search(), .split()
 //regex flags: g, i, m, s, u, y. i ignores case, g global, m multiline, s dotall, u unicode, y sticky, d information about indices of matches
 //regex carrot anchor ^, dollar sign anchor $
+
 const regex = /freecodecamp/g;
 const str = "freecodecamp is the best we love freecodecamp";
 const matched = str.matchAll(regex);
 console.log(Array.from(matched));
 const regex = /\w/; // \w matches any alphanumeric character (letters and digits) and underscore
 //getDate(), getDay(), getFullYear(), getHours(), getMilliseconds(), getMinutes(), getMonth(), getSeconds(), getTime(), getTimezoneOffset(), getUTCDate(), getUTCDay(), getUTCFullYear(), getUTCHours(), getUTCMilliseconds(), getUTCMinutes(), getUTCMonth(), getUTCSeconds()
+//set()
+const treeSet = new Set();
+treeSet.add("Baobab");
+treeSet.add("Jackalberry");
+treeSet.add("Mopane Tree");
+treeSet.add("Breadfruit");
+treeSet.delete("Breadfruit");
+treeSet.keys()
+treeSet.values()
+treeSet.forEach((tree) => console.log(tree));
+treeSet.size
+const treeWeakSet = new WeakSet();
 //863
-
+//add workshops + certification projects
 let weekend = "on this day I'll hike"
 let percentage = 5.5
 let projectDeadline = false;
