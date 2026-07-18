@@ -1,4 +1,78 @@
-//variables and data types: string, number, float,boolean, undefined, null, bigint, symbol, array, object
+//class
+class Circus{
+  constructor(location, rules, performer) {
+    this.location = location;
+    this.rules = rules;
+    this.performer = performer;
+  }
+  //adding a method
+  stunt() {
+    const thisStunt = `${this.performer} is going to juggle torches whiole standing on an elephant.`;
+
+  }
+}
+const circus = new Circus("Water Themed Park");
+
+
+
+class Country {
+  constructor(location, population) {
+    this.location = location;
+    this.population = population;
+  }
+}
+  class Canada extends Country {
+   language() {
+    const thisLanguage = "French Canadian";
+   }
+  }
+  let myCountry = new Canada("Maple Leaf", 41000000);
+  let globeTrot = myCountry.location;
+ let peoplePop =  myCountry.population;
+  myCountry.language();
+
+  class Vehicle {
+    constructor(brand, year){
+      this.brand = brand;
+      this.year = year;
+
+    }
+  }
+  class Car extends Vehicle {
+    constructor(brand, year, numOfDoors) {
+      super(brand, year);
+      this.numOfDoors = numOfDoors;
+    }
+  }
+let myCar = new Car("Math.random Motors", 2020, 4);
+
+
+class Bitcoin {
+  constructor(type, price) {
+    this.type = type;
+    this.price = price;
+  }
+
+  static createBusiness() {
+    return new this("Business", 1000000);
+  }
+}
+let myInvestment = Bitcoin.createBusiness();
+
+
+class Data {
+  static numberOfFilesSold = 0;
+
+  constructor(type) {
+    this.type = type;
+    Data.numberOfFilesSold++;
+    //To access the value of a static property, you just need to use dot notation 
+    // on the class itself, since the property belongs to the class.
+  }
+}
+let thisData = new Data("Corrupted file")
+
+//variables and data types: string, number, float,boolean, undefined, null, bigint, symbol, dynamic array,, static array, object
 //type conversion typeof() and Number(), String(), Boolean(), BigInt()
 //High order functions: map(), filter(), reduce(), forEach(), sort(), every(), some()
 //new Map() and can function similar to new Set()
@@ -42,8 +116,8 @@ myTreesMap.set({ type: 'deciduous' }, 'Maple tree');
 const regex = /freecodecamp/g;
 const str = "freecodecamp is the best we love freecodecamp";
 const matched = str.matchAll(regex);
-console.log(Array.from(matched));
-const regex = /\w/; // \w matches any alphanumeric character (letters and digits) and underscore
+//console.log(Array.from(matched));
+//const regex = /\w/; // \w matches any alphanumeric character (letters and digits) and underscore
 //getDate(), getDay(), getFullYear(), getHours(), getMilliseconds(), getMinutes(), getMonth(), getSeconds(), getTime(), getTimezoneOffset(), getUTCDate(), getUTCDay(), getUTCFullYear(), getUTCHours(), getUTCMilliseconds(), getUTCMinutes(), getUTCMonth(), getUTCSeconds()
 //set()
 const treeSet = new Set();
@@ -54,11 +128,12 @@ treeSet.add("Breadfruit");
 treeSet.delete("Breadfruit");
 treeSet.keys()
 treeSet.values()
-treeSet.forEach((tree) => console.log(tree));
+//treeSet.forEach((tree) => console.log(tree));
 treeSet.size
 const treeWeakSet = new WeakSet();
+
 //863
-//add workshops + certification projects
+
 let weekend = "on this day I'll hike"
 let percentage = 5.5
 let projectDeadline = false;
@@ -982,6 +1057,7 @@ function steamrollArray(arr) {
 
 //innerHTML and innerText are properties of DOM elements in JavaScript that allow you to access 
 // and manipulate the content of HTML elements.
+/*
 const container = document.getElementById("container");
 container.innerHTML = "<ul><li>Cheese</li><li>Tomato</li></ul>";
 //further DOM manipulating
@@ -990,10 +1066,11 @@ const img = document.createElement("img");
 img.src = "https://cdn.freecodecamp.org/curriculum/cat-photo-app/lasagna.jpg";
 img.alt = "A slice of lasagna on a plate.";
 containers.appendChild(img);
+*/
 
 //setInterval() setTimeout() clearTimeout() clearInterval()
 const intervalID = setInterval(() => {
- console.log("This will stop after 5 seconds");
+ //console.log("This will stop after 5 seconds");
 }, 1000);
 
 setTimeout(() => {
@@ -1004,13 +1081,7 @@ let timeoutID = setTimeout(() => {
   //console.log("This will run if not canceled");
 }, 5000);
 
-document
-.querySelector("#cancelButton")
-.addEventListener("click", () => {
-  clearTimeout(timeoutID);
-  //console.log("Timeout canceled!");
-});
-//end
+
 
 
 //throw method
@@ -1027,3 +1098,89 @@ try {
 } finally {
   // Code that runs regardless of whether an error occurred or not
 }
+
+
+//Bank Account Management Program
+class BankAccount {
+  constructor() {
+    this.balance = 0;
+    this.transactions = [];
+  }
+
+  deposit(amount) {
+    if (amount > 0) {
+      this.transactions.push({ type: "deposit", amount: amount });
+      this.balance += amount;
+      return `Successfully deposited $${amount}. New balance: $${this.balance}`;
+    }
+    return "Deposit amount must be greater than zero.";
+  }
+
+  withdraw(amount) {
+    if (amount > 0 && amount <= this.balance) {
+      this.transactions.push({ type: "withdraw", amount: amount });
+      this.balance -= amount;
+      return `Successfully withdrew $${amount}. New balance: $${this.balance}`;
+    }
+    return "Insufficient balance or invalid amount.";
+  }
+
+  checkBalance() {
+    return `Current balance: $${this.balance}`;
+  }
+
+  listAllDeposits() {
+    const deposits = this.transactions
+      .filter(t => t.type === "deposit")
+      .map(t => t.amount);
+    return `Deposits: ${deposits.join(",")}`;
+  }
+
+  listAllWithdrawals() {
+    const withdrawals = this.transactions
+      .filter(t => t.type === "withdraw")
+      .map(t => t.amount);
+    return `Withdrawals: ${withdrawals.join(",")}`;
+  }
+}
+
+// Create instance and perform transactions
+const myAccount = new BankAccount();
+/*
+console.log(myAccount.deposit(200));   
+console.log(myAccount.deposit(100));   
+console.log(myAccount.withdraw(50));   
+console.log(myAccount.withdraw(30));      
+
+console.log(myAccount.checkBalance());
+console.log(myAccount.listAllDeposits());
+console.log(myAccount.listAllWithdrawals());
+*/
+
+
+
+//Algorithm Big O Notation
+//O(1) is known as "Constant Time Complexity". When an algorithm has constant 
+// time complexity, it takes the same amount of time to run, regardless of input size.
+function checkEvenOrOddd(number) {
+  if (number % 2 === 0) {
+    return "Even";
+  } else {
+    return "Odd";
+  }
+}
+//O(log n) is known as "Logarithmic Time Complexity". This means that the time 
+//required by the algorithm increases slowly as the input size grows.
+
+//O(n) is known as "Linear Time Complexity". The running time of algorithms with this 
+//time complexity increases proportionally to the input size.
+
+//O(n log n) is known as "Log-Linear Time Complexity". This is a common time complexity 
+// of efficient sorting algorithms, like Merge Sort and Quick Sort.
+
+//O(n²) is known as "Quadratic Time Complexity". The running time of these algorithms 
+// increases quadratically relative to the input size, 
+// which is generally not efficient for real-world problems.
+
+ //"Exponential Time Complexity", denoted as O(2^n), and 
+ // "Factorial Time Complexity",  O(n!). Both are inefficient for real-world scenarios.
